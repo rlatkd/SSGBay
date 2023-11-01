@@ -1,0 +1,108 @@
+.outerContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 100px;
+}
+
+.topSection {
+  display: flex;
+  justify-content: center;
+  min-width: 1024px;
+  max-width: 1024px;
+  gap: 100px;
+  margin-bottom: 50px;
+}
+
+.title {
+  font-size: 45px;
+  font-weight: 500;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgb(139, 139, 139);
+}
+
+.price {
+  font-size: 30px;
+}
+
+.date {
+  font-size: 30px;
+}
+
+.form {
+  display: flex;
+  align-items: center;
+}
+
+.input {
+  height: 50px;
+  width: 300px;
+  font-size: 20px;
+  padding-left: 10px;
+  border-bottom-left-radius: 3px;
+  border-top-left-radius: 3px;
+  border: 2px solid black;
+}
+
+.bidButton {
+  height: 50px;
+  width: 60px;
+  background-color: #f25278;
+  border-bottom-right-radius: 3px;
+  border-top-right-radius: 3px;
+  color: white;
+  font-size: 17px;
+  border: 2px solid black;
+  border-left: none;
+  cursor: pointer;
+  &:active{
+    background-color: #b33e59;
+  }
+}
+
+.itemImg {
+  width: 400px;
+  height: 400px;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  gap: 20px;
+}
+
+.bottomSection {
+    display: flex;
+    width: 1024px;
+    justify-content: center;
+    gap: 70px;
+}
+
+.itemInfo {
+    font-size: 25px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid rgb(139, 139, 139);
+}
+
+.bottomRightSection {
+    font-size: 18px;
+    border-left: 1px solid rgb(139, 139, 139);
+    padding-left: 70px;
+}
+
+.userInfo {
+    font-size: 25px;
+    font-weight: 600;
+    border-bottom: 1px solid rgb(139, 139, 139);
+    margin-bottom: 20px;
+    padding-bottom: 5px;
+}
+
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
+     -webkit-appearance: none;
+     margin: 0;
+}

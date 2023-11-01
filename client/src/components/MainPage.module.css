@@ -1,0 +1,29 @@
+.mainContainer {
+  display: flex;
+  height: 1000px;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cardContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: start;
+  max-width: 1024px;
+  min-width: 1024px;
+  gap: 70px;
+}
+
+.dropDownContainer {
+  display: flex;
+  width: 1024px;
+  justify-content: left;
+}
+.dropDown {
+  width: 100px;
+  height: 30px;
+  font-size: 14px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border: 2px solid black;
+}

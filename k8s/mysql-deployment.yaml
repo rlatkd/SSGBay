@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-mysql-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: my-mysql
+  template:
+    metadata:
+      name: my-mysql-pod
+      labels:
+        app: my-mysql
+    spec:
+      containers:
+        - name: my-mysql-container
+          image: gnstkd/mymysql:1.0
+          ports:
+            - containerPort: 3306
+          volumeMounts:
+            - name: mysql-volume
+              mountPath: /var/lib/mysql
+              subPath: mysql
+      volumes:
+        - name: mysql-volume
+          persistentVolumeClaim:
+            claimName: nfs-persistentvolumeclaim
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-mysql-service
+spec:
+  type: ClusterIP
+  ports:
+    - name: my-mysql
+      port: 3306
+      targetPort: 3306
+  selector:
+    app: my-mysql

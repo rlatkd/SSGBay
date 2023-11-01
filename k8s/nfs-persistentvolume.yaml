@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: nfs-persistentvolume
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  nfs:
+    path: /
+    server: 172.17.60.101 # nfs-deployment-service.yaml로 실행한 nfs-service의 ClusterIP

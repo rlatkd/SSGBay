@@ -1,0 +1,101 @@
+.applyButton {
+  width: 100px;
+  height: 25px;
+  border-radius: 5px;
+  background-color: black;
+  color: white;
+  margin-bottom: 30px;
+  margin-top: 30px;
+}
+
+.previewImage {
+  width: 300px;
+  height: 400px; 
+}
+
+.imageContainer {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.auctionBox {
+  width: 1100px;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 6rem;
+  border: solid;
+  border-radius: 20px;
+  overflow: hidden;
+  background-color: white;
+}
+
+.crinsertBox {
+  margin: auto;
+  width: 1000px;
+  text-align: left;
+}
+
+.auinputField {
+  border: none;
+  border-bottom: solid;
+  font-size: 16px;
+  height: 35px;
+}
+
+.coinputField {
+  margin-top: 30px;
+  border: solid;
+  border-radius: 10px;
+  font-size: 16px;
+  height: 400px;
+  width: 500px;
+}
+
+.iminputField {
+  margin-top: 30px;
+  border: solid;
+  border-radius: 10px;
+  font-size: 16px;
+  height: 400px;
+  width: 300px;
+}
+
+.imagebutton {
+  width: 140px;
+  height: 25px;
+  border-radius: 5px;
+  background-color: black;
+  color: white;
+  padding: 5px 10px;
+  margin-right: 10px; 
+}
+
+.flexdivide {
+  display: flex;
+  justify-content: space-between;
+}
+
+.datetimeContainer {
+  display: flex;
+  align-items: center; 
+}
+
+.inputGroup {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.datetimeWrapper {
+  margin-right: 10px;
+}
+
+input[type="datetime-local"] {
+  margin-right: 10px;
+}
+
+.imageWrapper {
+  margin-right: 20px;
+}
