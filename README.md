@@ -944,6 +944,7 @@ CMD ["sh", "-c", "cron && python app.py"]
 - Recoil
 - Styled Components
 - async-await
+- api 문서화 도구 (Swagger?)
 
 ### 순서?
 
