@@ -930,7 +930,7 @@ CMD ["sh", "-c", "cron && python app.py"]
 
 ### 7.3 후기
 
-팀원 한 명이 취업하여 나가고, 다들 바쁜 시기라 다사다난한 프로젝트 기간이였지만, 혼자서 react, flask, docker, kubernetes 까지 할 수 있어서 매우 뿌듯했습니다.
+- 11
 
 ### 미완
 
