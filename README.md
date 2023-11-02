@@ -925,7 +925,7 @@ RUN crontab -l | { cat; echo "* * * * * /usr/local/bin/python /app/historyUpdate
 CMD ["sh", "-c", "cron && python app.py"]
 ```
 
-- JWT는 python 버전때문에 따로 추가함
+- JWT는 python 버전때문에 따로 추가함 (개발환경에서의 JWT와 배포환경에서의 JWT가 다름)
 - 애초에 import JWT를 하면 됐음
 
 ### 7.2 개선해야할 점
