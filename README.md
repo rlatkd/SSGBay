@@ -196,7 +196,7 @@
     → 세션(Session), 토큰(Token)이 사용됨
 - 세션 동작과정
 
-![Untitled](Project%20d22b2b34de744bcba583d3162b5edc4d/Untitled%201.png)
+<img src='https://github.com/rlatkd/SSGBay-k8s/blob/main/readmefile/sessionImage.png'/>
 
 - 토큰 동작과정
 
