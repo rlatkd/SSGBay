@@ -149,7 +149,7 @@
 
 ### 1.6 ER Diagram
 
-![Untitled]<img src='https://github.com/rlatkd/SSGBay-k8s/blob/main/readmefile/ERDiagram.png'/>
+<img src='https://github.com/rlatkd/SSGBay-k8s/blob/main/readmefile/ERDiagram.png'/>
 
 ## 2. Backend
 
