@@ -1,6 +1,6 @@
 import { Link, useNavigate  } from "react-router-dom";
 import React, { useState } from 'react';
-import styles from '../components/LoginPage.module.css';
+import styles from '../styles/LoginPage.module.css';
 
 
 
