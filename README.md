@@ -944,7 +944,9 @@ CMD ["sh", "-c", "cron && python app.py"]
 - Recoil
 - Styled Components
 - async-await
-- api 문서화 도구 (Swagger?)
+- api 문서화 도구 (Flask Swagger)
+- 프론트 백 통신 개념 명확히 알아야댐
+- react와 flask가 직접 통신하는 것이 아닌 react가 브라우저에 js 뿌리고 브라우저가 flask와 통신하는거임
 
 ### 순서?
 
