@@ -697,6 +697,7 @@ spec:
 - ClusterIP 타입 서비스 설정
 - ClusterIP를 사용한 이유:
   - MySQL 서비스는 클러스터 외부에 노출할 필요가 없기 때문
+  - 외부에 노출하면 오히려 보안상의 문제가 됨
   - 외부에 노출하려면 LoadBalancer 혹은 NodePort(On-premise 환경) 사용
 
 ```yaml
@@ -705,7 +706,7 @@ kind: Deployment
 metadata:
   name: my-mysql-deployment
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: my-mysql
@@ -723,7 +724,7 @@ spec:
           volumeMounts:
             - name: mysql-volume
               mountPath: /var/lib/mysql
-              subPath: mysql
+              subPath: mysql # 중요함
       volumes:
         - name: mysql-volume
           persistentVolumeClaim:
@@ -947,6 +948,10 @@ CMD ["sh", "-c", "cron && python app.py"]
 - api 문서화 도구 (Flask Swagger)
 - 프론트 백 통신 개념 명확히 알아야댐
 - react와 flask가 직접 통신하는 것이 아닌 react가 브라우저에 js 뿌리고 브라우저가 flask와 통신하는거임
+- clusterIP는 서비스 이름으로 접근 가능; database.py의 connectionString = {
+  'host': 'mysql service 이름' }
+- github에 새로운 소스코드나 특정 브랜치가 커밋되거나 그런 변경이 일어나면
+  git action 에 지정해놔서 그럴떄마다 어떤 행동을 취할지를 dockerfile dockerhub 등등 명령어 하고 - > 배포 자동화?
 
 ### 순서?
 

@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: my-mysql-deployment
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: my-mysql
@@ -21,7 +21,7 @@ spec:
           volumeMounts:
             - name: mysql-volume
               mountPath: /var/lib/mysql
-              subPath: mysql
+              subPath: mysql # 중요함
       volumes:
         - name: mysql-volume
           persistentVolumeClaim:
