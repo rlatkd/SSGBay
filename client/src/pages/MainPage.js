@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import styles from "../components/MainPage.module.css";
-import Card from "../components/Card";
+import styles from "../styles/MainPage.module.css";
+import Card from "../styles/Card";
 import { useLocation } from "react-router-dom";
 function MainPage() {
   const location = useLocation();

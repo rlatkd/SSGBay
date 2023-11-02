@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import styles from "../components/DetailPage.module.css";
+import styles from "../styles/DetailPage.module.css";
 
 
 function DetailPage() {

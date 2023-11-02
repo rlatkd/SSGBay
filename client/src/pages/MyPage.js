@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import styles from "../components/MyPage.module.css";
+import styles from "../styles/MyPage.module.css";
 import axios from "axios";
-import Card from "../components/Card";
+import Card from "../styles/Card";
 
 function MyPage() {
   const [curTab, setCurTab] = useState("PurchaseHistory");

@@ -5,8 +5,8 @@ import MyPage from "./pages/MyPage";
 import SignupPage from "./pages/SignupPage";
 import DetailPage from "./pages/DetailPage";
 import CreatePage from "./pages/CreatePage";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
+import Header from "./styles/Header";
+import Footer from "./styles/Footer";
 import './App.css';
 
 function App() {
