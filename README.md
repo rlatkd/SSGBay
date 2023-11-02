@@ -941,3 +941,7 @@ CMD ["sh", "-c", "cron && python app.py"]
 ### 노트
 
 - 이미지 저장 경로를 설정했는데 ip를 매번 바꿀 수 없으니 DNS 서버를 이용
+- Recoil
+- Styled Components
+- async-await
+- PyTet, 단위테스트 코드 자동화?
