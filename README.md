@@ -1,12 +1,12 @@
 ## 0. 목차
 
 - [개요](#1-개요)
-- Backend(#2-Backend)
-- Database(#3-Database)
-- Frontend(#4-Frontend)
-- Docker(#5-Docker)
-- Kubernetes(#6-Kubernetes)
-- 후기(#7-후기)
+- [Backend](#2-Backend)
+- [Database](#3-Database)
+- [Frontend](#4-Frontend)
+- [Docker](#5-Docker)
+- [Kubernetes](#6-Kubernetes)
+- [후기](#7-후기)
 
 ## 1. 개요
 
