@@ -927,12 +927,26 @@ RUN crontab -l | { cat; echo "* * * * * /usr/local/bin/python /app/historyUpdate
 CMD ["sh", "-c", "cron && python app.py"]
 ```
 
+- JWT는 python 버전때문에 따로 추가함
+- 애초에 import JWT를 하면 됐음
+
 ### 7.2 개선해야할 점
 
 - 데이터베이스를 CronJob을 이용해 백업용을 만들지 않음
 - 빌드한 이미지를 테스트할 때 `console.log` 등을 이용해 문제가 어디서 발생했는지 파악해야함
 - 웹 페이지 맨 아래에서 맨 위로 올리는 버튼이 필요함
+- 가변적으로 바뀌어야하는 것들(IP주소) -> 환경변수로 처리해야함
 
-### 7.3 문제점 및 해결방안
+### 7.3 후기
 
 팀원 한 명이 취업하여 나가고, 다들 바쁜 시기라 다사다난한 프로젝트 기간이였지만, 혼자서 react, flask, docker, kubernetes 까지 할 수 있어서 매우 뿌듯했습니다.
+
+### 미완
+
+- metallb-system 명시
+- 문제점 해결방안 보충
+- 개선해야할 점 보충
+
+### 노트
+
+- 이미지 저장 경로를 설정했는데 ip를 매번 바꿀 수 없으니 DNS 서버를 이용
