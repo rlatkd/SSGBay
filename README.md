@@ -944,4 +944,10 @@ CMD ["sh", "-c", "cron && python app.py"]
 - Recoil
 - Styled Components
 - async-await
-- PyTet, 단위테스트 코드 자동화?
+
+### 순서?
+
+- 명세서
+- git 분업화
+- PyTet, 단위테스트 코드 자동화 (test case 구현)
+- front는 일정한 형식으로 요청했을 때 내가 받을 수 있는 더미데이터 미리
