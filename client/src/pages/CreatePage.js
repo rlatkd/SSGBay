@@ -3,6 +3,7 @@ import { useRef, useState } from "react";
 import { Link, useNavigate} from "react-router-dom";
 import styles from '../styles/CreatePage.module.css';
 
+
 function CreatePage() {
   const [formData, setFormData] = useState({
     itemName: '',
@@ -13,11 +14,11 @@ function CreatePage() {
     userId:''
   });
 
-  const refendTime = useRef(null);
-  const refitemName = useRef(null);
-  const refitemContent = useRef(null);
-  const refitemPrice = useRef(null);
-  const refitemImage = useRef(null);
+  const refendTime = useRef();
+  const refitemName = useRef();
+  const refitemContent = useRef();
+  const refitemPrice = useRef();
+  const refitemImage = useRef();
   const [imagePreview, setImagePreview] = useState('');
   const userId = localStorage.getItem('userId');
   const navigate = useNavigate();

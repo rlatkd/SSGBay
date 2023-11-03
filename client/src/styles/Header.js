@@ -1,4 +1,4 @@
-import { Link, useNavigate, useLocation  } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "./Header.module.css";
 import { RiAuctionFill } from "react-icons/ri";
 import { useState } from "react";
@@ -13,7 +13,6 @@ function Header() {
   const isLogin = localStorage.getItem('token'); // 토큰이 존재하는지 확인
 
   const navigate = useNavigate();
-  const location = useLocation();
 
   const handlerLogout = () => {
     // 로그아웃 시 localStorage의 토큰 제거

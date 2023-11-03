@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import styles from '../styles/LoginPage.module.css';
 
 
-
 function LoginPage() {
   const [id, setUsername] = useState('');
   const [password, setPassword] = useState('');

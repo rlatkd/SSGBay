@@ -90,7 +90,6 @@ function DetailPage() {
   
     // 한국어로 날짜 및 시간 형식 변환
     const koreanDate = new Intl.DateTimeFormat('ko-KR', options).format(date);
-    // const startTime = new Intl.DateTimeFormat('ko-KR', options).format(data.startTime);
     return koreanDate;
   };
   const startTime = formatDate(data.startTime);

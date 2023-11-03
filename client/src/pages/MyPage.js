@@ -3,6 +3,7 @@ import styles from "../styles/MyPage.module.css";
 import axios from "axios";
 import Card from "../styles/Card";
 
+
 function MyPage() {
   const [curTab, setCurTab] = useState("PurchaseHistory");
   const [buyItem, setBuyItem] = useState([]);

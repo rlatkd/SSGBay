@@ -3,18 +3,12 @@ import axios from "axios";
 import styles from "../styles/MainPage.module.css";
 import Card from "../styles/Card";
 import { useLocation } from "react-router-dom";
+
+
 function MainPage() {
   const location = useLocation();
   const query = location.state?.query.trim() || '';
-
-  
-  //키워드 검색시, query에 해당 키워드 할당됨.
-  // const query = new URLSearchParams(location.search).get("query");
-
-  //정렬옵션 상태
   const [sortMethod, setSortMethod] = useState("date");
-
-  //게시글데이터 상태
   const [itemDataList, setItemDataList] = useState([]);
 
   useEffect(() => {
@@ -29,10 +23,8 @@ function MainPage() {
       .catch((error) => {
         console.error(error);
       });
-    //} 
   }, [sortMethod, query]);
 
-  // 게시글 정렬 이벤트
   const handlerSortChange = (e) => {
     console.log(`${e.target.value}순으로 정렬합니다.`);
     setSortMethod(e.target.value);
