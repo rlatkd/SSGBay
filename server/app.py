@@ -20,7 +20,6 @@ cors = CORS(app, resources={r"/*": {"origins": "*"}})
 def main():
     sort = request.args.get('sort')
     keyword = request.args.get('keyword')
-    
     return database.getItems(sort, keyword)
 
 
@@ -30,15 +29,13 @@ def login():
     if request.method == 'POST':
         userId = request.json.get('id')
         password = request.json.get('password')
-       
         isid = database.idCheck(userId, password)
+        
         if(isid) :
             access_token = create_access_token(identity=userId)
-            
             return jsonify({'token': access_token, 'userId':userId}), 200
         
         else : 
-            
             return jsonify({'message': '잘못된 로그인 정보입니다. 다시 입력해주세요.'}), 401
 
 
@@ -52,12 +49,10 @@ def signup():
         userPhone = request.json.get('userPhone')
         userInfo, status_code, headers = database.addUserInfo(userId, userPwd, userNickname, userPhone)  
         access_token = create_access_token(identity=userId)
-        
         return jsonify({"message": "계정 추가 및 로그인 성공", "token": access_token, 'userId':userId}), 200, {'Content-Type': 'application/json'}
 
     except Exception as e:
         print(e)
-        
         return jsonify({"message": "요청중 에러가 발생"}), 500, {'Content-Type': 'application/json'}
 
 
@@ -67,11 +62,9 @@ def getBuyItem():
     user_id = request.args.get('id')
     if user_id is not None:
         user_data = database.getBuyItem(user_id)
-        
         return jsonify(user_data), 200
     
     else:
-        
         return jsonify({'message': '인증되지 않은 접근입니다.'}), 401 
     
     
@@ -81,11 +74,9 @@ def getMyItem():
     user_id = request.args.get('id')
     if user_id is not None:
         user_data = database.getMyItem(user_id)
-        
         return jsonify(user_data), 200
     
     else:
-        
         return jsonify({'message': '인증되지 않은 접근입니다.'}), 401
     
 
@@ -94,12 +85,10 @@ def getMyItem():
 def detail(id):
     if request.method == 'GET':
         print(database.getItemDetails(id) , id)
-        
         return database.getItemDetails(id)
     
     if request.method == 'PUT':
         price = request.json.get('price')
-        
         return database.updatePrice(id, price, new_price=price)
     
 
@@ -109,7 +98,6 @@ def history():
     itemId = request.form.get('itemId')
     userId = request.form.get('userId')
     endTime = request.form.get('endTime')
-    
     return database.insertPrehistory(itemId, userId, endTime)
     
     
@@ -128,12 +116,10 @@ def create():
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], file.filename))
         image_url = 'http://10.0.0.4:5000/resources/' + file.filename
         print(image_url)
-        
         return database.addItemInfo( itemName, itemContent, itemPrice, image_url, endTime, userId)
 
     except Exception as e:
         print(e)
-        
         return jsonify({"message": "요청중 에러가 발생"}), 500, {'Content-Type': 'application/json'}
 
 

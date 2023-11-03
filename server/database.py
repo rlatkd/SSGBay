@@ -24,7 +24,6 @@ def idCheck(user_id, pwd):
             sql = "SELECT * FROM user " + "where id = %s and password = %s;"
             cursor.execute(sql, [user_id, pwd])
             result = cursor.fetchall()
-            
             return result
         
     except Exception as e:
@@ -38,7 +37,6 @@ def getMyItem(user_id):
             sql = "SELECT * FROM item where user_id = %s;"
             cursor.execute(sql, [user_id])
             result = cursor.fetchall()
-            
             return result
         
     except Exception as e:
@@ -49,7 +47,6 @@ def getItems(sort, keyword):
     try:
         query = "SELECT * FROM item"
   
-        # Conditionally filter by keyword
         if keyword:
             query += f" WHERE name LIKE '%{keyword}%' OR content LIKE '%{keyword}%'"
                 
@@ -67,16 +64,13 @@ def getItems(sort, keyword):
             cursor.close()
         
         if not itemInfo:
-            
             return [], 200, { 'Content-Type': 'application/json'}
-
         return itemInfo, 200, { 'Content-Type': 'application/json'}
 
     except Exception as e:
         print(e)
 
 
-# 메인페이지에서 1번상품을 들어가면 1번상품에 해당하는 내용이 나와야하기떄문에 id인자와 쿼리문 살짝 수정
 def getItemDetails(id):
     try:
         with connect(**connectionString) as con:
@@ -85,7 +79,6 @@ def getItemDetails(id):
             cursor.execute(sql, (id, ))
             itemDetails = cursor.fetchone()
             cursor.close()
-            
         return itemDetails, 200, { 'Content-Type': 'application/json'}
 
     except Exception as e:
@@ -100,7 +93,6 @@ def addUserInfo(userId, userPwd, userNickname, userPhone):
             print(cursor.execute(sql))
             userInfo = cursor.fetchall()
             con.commit()
-        
         return userInfo, 200, { 'Content-Type': 'application/json'}    
             
     except Exception as e:
@@ -114,7 +106,6 @@ def getMyItem(user_id):
             sql = "SELECT * FROM item where user_id = %s;"
             cursor.execute(sql, [user_id])
             result = cursor.fetchall()
-            
             return result
         
     except Exception as e:
@@ -129,7 +120,6 @@ def getBuyItem(user_id):
             cursor.execute(sql, [user_id])
             result = cursor.fetchall()
             print(result)
-            
             return result
         
     except Exception as e:
@@ -141,15 +131,12 @@ def addItemInfo(itemName, itemContent, itemPrice, itemImage, endTime, userId):
     with connect(**connectionString) as con:
             cursor = con.cursor()
             now = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-            # SQL 쿼리 수정: 플레이스홀더를 사용하여 SQL 인젝션을 방지
             sql = "INSERT INTO item (name, content, price, image, endTime, startTime, user_id) VALUES (%s, %s, %s, %s, %s, %s, %s)"
             cursor.execute(sql, (itemName, itemContent, itemPrice, itemImage, endTime, now, userId))
             con.commit()
-
     return "경매물품 등록 성공", 200
  
 
-# database.py
 def getItemDetails(id):
     try:
         with connect(**connectionString) as con:
@@ -158,13 +145,12 @@ def getItemDetails(id):
             cursor.execute(sql, (id, ))
             itemDetails = cursor.fetchone()
             cursor.close()
-            
         return itemDetails, 200, { 'Content-Type': 'application/json'}
 
     except Exception as e:
         print(e)
         
-def updatePrice(id, price, new_price):
+def updatePrice(id, new_price):
     try:
         with connect(**connectionString) as con:
             cursor = con.cursor()
@@ -172,7 +158,6 @@ def updatePrice(id, price, new_price):
             cursor.execute(sql, (new_price,id))
             con.commit()
             cursor.close()
-            
             return {"message": "입찰되었습니다."}, 200
 
     except Exception as e:
@@ -190,10 +175,8 @@ def insertPrehistory(itemId, userId, endTime):
             cursor.execute(sql, (itemId, userId, formatted_date_for_mysql))
             con.commit()
             cursor.close()
-            
             return {"message": "거래 저장"}, 200
 
     except Exception as e:
         print(e)
-        
         return {"message": "거래 실패"}, 500
