@@ -8,6 +8,7 @@ import {
   AiOutlineUser,
 } from "react-icons/ai";
 
+
 function Header() {
   const [keyword, setKeyword] = useState("");
   const isLogin = localStorage.getItem('token'); // 토큰이 존재하는지 확인
