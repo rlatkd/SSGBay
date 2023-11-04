@@ -1,2 +1,2 @@
 * linguist-vendored
-*.Dockerfile linguist-vendored=false
+Dockerfile linguist-vendored=false
