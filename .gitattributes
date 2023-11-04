@@ -1,2 +1,2 @@
 * linguist-vendored
-server/** linguist-vendored=false
+server/** *.python linguist-vendored=false
