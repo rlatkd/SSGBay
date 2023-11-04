@@ -27,25 +27,20 @@
 - MySQL 8.0
 - React 18.2.0
 
-**(2) 협업 도구**
-
-- Github
-- Kakaotalk
-
-**(3) 개발 환경**
+**(2) 개발 환경**
 
 - Window 10 pro v22H2
 - VSCode
 
-**(4) 실행 환경**
+**(3) 실행 환경**
 
 - Node.js
 
-**(5) 테스트 환경**
+**(4) 테스트 환경**
 
 - Insomnia
 
-**(6) 운영 환경**
+**(5) 운영 환경**
 
 - Docker
 - Kubernetes
