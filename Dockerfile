@@ -1,3 +1,11 @@
+# this file exists for .gitattributes
+
+# real Dockerfile = [
+# ./server/Dockerfile-flask,
+# ./server/Dockerfile-mysql,
+# ./client/Dockerfile-react,
+# ]
+
 FROM    python:3.11
 RUN     apt-get update && apt-get install -y cron
 WORKDIR /app
