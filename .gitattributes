@@ -1,2 +1,3 @@
 * linguist-vendored
 server/*.Dockerfile linguist-vendored=false
+server/*.Dockerfile linguist-documentation=false
