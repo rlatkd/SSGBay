@@ -12,10 +12,10 @@
 
 ### 1.1 프로젝트 개요
 
-- 프로젝트 이름: SSGBay
+- 프로젝트 이름: 쓱Bay
 - 프로젝트 목적:
-  - 당근마켓, 중고나라, 번개장터 등 다양한 중고 거래 플랫폼이 있지만, 중고 경매 플랫폼은 아직 활성화되지 않음
-  - 따라서 SSG(신세계)+Bay(eBay)라는 서비스로 중고 경매 사이트를 제공
+  - 대한민국에 당근마켓, 중고나라, 번개장터 등 다양한 중고 거래 플랫폼이 있지만, 중고 경매 플랫폼은 아직 활성화되지 않음
+  - 따라서 쓱(SSG) + Bay(eBay)라는 웹서비스로 P2P 경매 사이트를 제공
 - 프로젝트 기간: 2023.10.26 ~ 2023.11.02
 
 ### 1.2 기술 스택 및 환경
@@ -56,7 +56,7 @@
 | ---------------------- | --------------------------------------------- |
 | 1일차(10/26)           | - 주제 선정, 기술 스택 결정, 프로토 타입 구성 |
 | 2일차(10.27)           | - 데이터베이스 완성, 메인 페이지 간단 구현    |
-| 3~4일차(10.28 ~ 10.29) | - React+Flask 완성 (CRUD)                     |
+| 3~4일차(10.28 ~ 10.29) | - React+Flask CRUD 웹 페이지 완성             |
 | 5일차(10.31)           | - 도커 이미지 생성 및 서비스 점검             |
 | 6일차(11.01)           | - 쿠버네티스 배포                             |
 | 7일차(11.02)           | - 프로젝트 보고서 작성 및 발표                |
@@ -144,7 +144,7 @@
 
 ## 2. Backend
 
-### 2.1 Backend 디렉터리 구조
+### 2.1 디렉터리 구조
 
 ```
 📁 server
@@ -339,7 +339,7 @@ def getMyItem(user_id):
 
 ## 3. Database
 
-### 3.1 Database 디렉터리 구조
+### 3.1 디렉터리 구조
 
 ```
  📁 database
@@ -348,9 +348,10 @@ def getMyItem(user_id):
 ```
 
 - init.sql
-  - mysql 초기 설정용 query
+  - MySQL Workbench 8.0 CE의 forwarding tool로 추출한 DB DDL로 작성
+  - Docker 이미지 빌드에 쓰일 MySQL 초기 설정용 query
 - Dockerfile-mysql
-  - 명령어를 토대로 나열된 명령문을 수행하여 mysql docker image를 생성
+  - 명령어를 토대로 나열된 명령문을 수행하여 MySQL Docker Image를 생성
 
 ### 3.2 MySQL
 
@@ -419,7 +420,7 @@ def getMyItem(user_id):
 
 **(1) 디자인**
 
-- 카드 형식을 이용해 전체 상품을 편하게 확인 가능
+- 카드 UI를 이용해 전체 상품을 편하게 확인 가능
 
 <img src='https://github.com/rlatkd/SSGBay-k8s/blob/main/readmefile/mainPage.png'/>
 
@@ -477,7 +478,8 @@ def getMyItem(user_id):
 
 **(7) acync & await**
 
-- 기존의 비동기 처리 방식인 콜백 함수와 프로미스의 단점을 보완
+- async 함수 내부에서 await로 서버와 통신하고 promise가 끝나면 처리 결과에 따라 다른 결과 반환
+- 비동기 함수를 사용하여 다른 작업을 병렬로 실행할 수 있어 시스템 성능 향상 가능
 - 개발자가 읽기 좋은 코드를 작성할 수 있게 도와줌
 
 ```jsx
@@ -550,6 +552,7 @@ CMD ["sh", "-c", "cron && python app.py"]
 
 - 프로젝트 MySQL에 맞는 8.0 버전을 사용
 - 환경변수는 root password만 할당
+- Docker container 내부의 데이터베이스 지정 엔트리포인트인 `docker-entrypoint-initdb.d` 에 복사
 
 ```docker
 FROM mysql:8.0
@@ -575,17 +578,98 @@ COPY    --from=builder /my-app/build/ /usr/share/nginx/html/
 CMD     ["nginx", "-g", "daemon off;"]
 ```
 
-### 5.2 Docker image build
+### 5.2 Docker Image
+
+**(1) Docker Image 빌드**
 
 ```bash
-docker image build -t gnstkd/myreact:1.0 -f Dockerfile-react .
-docker image build -t gnstkd/myflask1.0 -f Dockerfile-flask .
 docker image build -t gnstkd/mymysql:1.0 -f Dockerfile-mysql .
+docker image build -t gnstkd/myflask1.0 -f Dockerfile-flask .
+docker image build -t gnstkd/myreact:1.0 -f Dockerfile-react .
 ```
 
-- Docker Hub에 이미지 생성된 것을 확인
+**(2) 빌드된 Docker Image 확인**
 
-[Docker Hub Container Image Library | App Containerization](https://hub.docker.com/)
+```bash
+docker image ls
+```
+
+```bash
+REPOSITORY                                TAG                                        IMAGE ID       CREATED         SIZE
+gnstkd/myreact                            1.0                                        c673b4d2fbd5   5 minutes ago   1.34GB
+gnstkd/myflask                            1.0                                        c0ab8f938e1d   17 hours ago    190MB
+gnstkd/mymysql                            1.0                                        a8d83556830d   17 hours ago    582MB
+```
+
+### 5.3 Docker Container
+
+**(1) 로컬에서 Docker Container를 실행**
+
+```bash
+docker container run -d --name mymysql mymysql:1.0
+docker container run -d -p 5000:5 --name myflask myflask:1.0
+docker container run -d -p 3000:80 --name myreact myreact:1.0
+```
+
+**(2) 실행 된 Docker Container 확인**
+
+```bash
+docker container ls
+```
+
+```bash
+CONTAINER ID   IMAGE                  COMMAND                  CREATED          STATUS          PORTS                    NAMES
+7a8b90123c72   gnstkd/myreact:1.0     "/docker-entrypoint.…"   5 seconds ago    Up 4 seconds    0.0.0.0:3000->80/tcp     myreact
+b1604da061ea   gnstkd/myflask:1.0     "sh -c 'cron && pyth…"   26 seconds ago   Up 25 seconds   0.0.0.0:5000->5000/tcp   myflask
+e6eb9c3f7c44   gnstkd/mymysql:1.0     "docker-entrypoint.s…"   47 seconds ago   Up 45 seconds   3306/tcp, 33060/tcp      mymysql
+```
+
+**(3) 각 Docker Container들이 잘 작동하는지 확인**
+
+```bash
+docker container exec -it e6eb9c3f7c44 /bin/bash
+
+bash-4.4# mysql -u root -p
+Enter password:1234
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| auction            |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+
+mysql> show tables;
++-------------------+
+| Tables_in_auction |
++-------------------+
+| history           |
+| item              |
+| prehistory        |
+| user              |
++-------------------+
+```
+
+![Untitled](Project%20d22b2b34de744bcba583d3162b5edc4d/Untitled%204.png)
+
+### 5.4 Docker Hub
+
+**(1) 로컬에 있는 Docker Image를 내 Docker Hub에 등록**
+
+```bash
+docker login
+docker image push gnstkd/mymysql:1.0
+docker image push gnstkd/myflask:1.0
+docker iamge push gnstkd/myreact:1.0
+```
+
+**(2) 내 Docker Hub에 Image 등록된 것을 확인**
+
+- [https://hub.docker.com/](https://hub.docker.com/)
 
 ```
 💿 gnstkd/myreact:1.0
@@ -609,7 +693,49 @@ docker image build -t gnstkd/mymysql:1.0 -f Dockerfile-mysql .
         └──── 📄 react-deployment.yaml
 ```
 
-### 6.2 볼륨 (Volume)
+### 6.2 Kubernetes 클러스터 셋업
+
+**(1) 가상머신 생성**
+
+```bash
+c:\kubernetes\vagrant-kubeadm-kubernetes>vagrant up
+c:\kubernetes\vagrant-kubeadm-kubernetes>vagrant status
+```
+
+```bash
+master                    running (virtualbox)
+node01                    running (virtualbox)
+node02                    running (virtualbox)
+```
+
+**(2) master node로 접속**
+
+```bash
+c:\kubernetes\vagrant-kubeadm-kubernetes>vagrant ssh master
+```
+
+```bash
+Welcome to Ubuntu 22.04.3 LTS (GNU/Linux 5.15.0-83-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+  System information as of Sat Nov  4 05:01:54 AM UTC 2023
+
+  System load:  1.64306640625      Users logged in:        0
+  Usage of /:   23.9% of 30.34GB   IPv4 address for eth0:  10.0.2.15
+  Memory usage: 22%                IPv4 address for eth1:  10.0.0.10
+  Swap usage:   0%                 IPv4 address for tunl0: 172.16.77.128
+  Processes:    180
+
+This system is built by the Bento project by Chef Software
+More information can be found at https://github.com/chef/bento
+Last login: Sat Nov  4 05:01:55 2023 from 10.0.2.2
+vagrant@master-node:~$
+```
+
+### 6.3 볼륨 (Volume)
 
 **(1) hostPath**
 
@@ -624,7 +750,29 @@ docker image build -t gnstkd/mymysql:1.0 -f Dockerfile-mysql .
 - 파드 하나에 안정성이 높은 외부 스토리지를 볼륨으로 설정한 후 해당 파드에 NFS 서버 설정
 - 다른 파드는 NFS 볼륨으로 마운트
 
-### 6.3 NFS 사용
+### 6.4 NFS
+
+(1) MetalLB
+
+- [https://metallb.universe.tf/](https://metallb.universe.tf/)
+- On-Premise 환경에서 LoadBalancer 타입의 서비스를 연동하기 위해서 필요
+- metallb-system의 네임스페이스 확인
+
+```bash
+kubectl get namespace
+```
+
+```bash
+NAME              STATUS   AGE
+default           Active   29d
+ingress-nginx     Active   23d
+kube-node-lease   Active   29d
+kube-public       Active   29d
+kube-system       Active   29d
+metallb-system    Active   24d
+```
+
+(2) NFS를 사용한 퍼시스턴트 볼륨(Persistent Volume) 생성
 
 - 사용자(또는 클라이언트 디바이스)가 네트워크 서버에 접속하여 서버 내 파일에 액세스 가능
 - 여러 사용자가 데이터 충돌없이 동일한 파일을 공유할 수 있도록 하는 규칙 설정 가능
@@ -645,7 +793,7 @@ spec:
     server: 172.17.60.101
 ```
 
-### 6.4 서비스
+### 6.5 서비스
 
 **(1) flask-deployment.yaml**
 
@@ -872,9 +1020,9 @@ def create():
         return jsonify({"message": "요청중 에러가 발생"}), 500, {'Content-Type': 'application/json'}
 ```
 
-(2) JWT
+**(2) JWT**
 
-- 문제점: `pip freeze >> requirements.txt` 로 모듈 및 패키지 명시했으나 도커 이미지를 빌드하면 JWT가 적용되지 않음
+- 문제점: `pip freeze >> requirements.txt` 로 모듈 및 패키지 명시했으나 Docker Image를 빌드하면 JWT가 적용되지 않음
 
 ```
 blinker==1.6.3
@@ -919,43 +1067,43 @@ RUN crontab -l | { cat; echo "* * * * * /usr/local/bin/python /app/historyUpdate
 CMD ["sh", "-c", "cron && python app.py"]
 ```
 
-- JWT는 python 버전때문에 따로 추가함 (개발환경에서의 JWT와 배포환경에서의 JWT가 다름)
+- JWT는 python 버전때문에 따로 추가함
 - 애초에 import JWT를 하면 됐음
 
 ### 7.2 개선해야할 점
 
-- 데이터베이스를 CronJob을 이용해 백업용을 만들지 않음
+**(1) 협업**
+
+- git 분업화를 통해 api 명세서가 작성되면 frontend는 일정한 형식으로 요청했을 때 미리 더미데이터를 이용한 테스트 필요
+- git action을 통해 새로운 소스코드나 특정 브랜치의 상태가 변하면 바로 적용될 수 있게 명령어를 추가함으로서 배포 자동화 개선
+
+**(2) Backend**
+
+- API 명세서를 Swagger를 이용해 일목요연하게 표현
+- JWT을 브라우저 local storage에 저장하여 보안 상 취약
+  - Access Token의 탈취 위험을 감안해 유효기간을 짧게 설정하고, Refresh Token을 이용해 개선 가능
+- test case 코드를 구현해 단위 테스트 코드 자동화 필요
+- 짧은 시간에 빠르게 주먹구구식으로 개발을 하여 클린코딩이 전혀 되지 않음
+
+**(3) Database**
+
+- 데이터베이스를 CronJob을 이용해 백업 용을 만들지 않음
+
+**(4) Frontend**
+
+- 회원가입 페이지 문자열 형식 (ex. 이메일) 지정
+- 게시글 수정이나 삭제할 때 경고창을 한 번 더 나오게 해야함
+- 웹 페이지 맨 아래에서 맨 위로 올리는 버튼이 필요
 - 빌드한 이미지를 테스트할 때 `console.log` 등을 이용해 문제가 어디서 발생했는지 파악해야함
-- 웹 페이지 맨 아래에서 맨 위로 올리는 버튼이 필요함
-- 하드코딩;가변적으로 바뀌어야하는 것들(IP주소) -> 환경변수로 처리해야함
+
+**(5) Docker & Kubernetes**
+
+- ClusterIP는 서비스 이름으로 접근 가능하기 때문에 host IP 하드코딩 지양
+- 가변적으로 바뀌어야하는 것들(IP주소)을 환경변수로 처리 필요
 
 ### 7.3 후기
 
-- 11
-
-### 미완
-
-- metallb-system 명시
-- 문제점 해결방안 보충
-- 개선해야할 점 보충
-
-### 노트
-
-- 이미지 저장 경로를 설정했는데 ip를 매번 바꿀 수 없으니 DNS 서버를 이용
-- Recoil
-- Styled Components
-- async-await
-- api 문서화 도구 (Flask Swagger)
-- 프론트 백 통신 개념 명확히 알아야댐
-- react와 flask가 직접 통신하는 것이 아닌 react가 브라우저에 js 뿌리고 브라우저가 flask와 통신하는거임
-- clusterIP는 서비스 이름으로 접근 가능; database.py의 connectionString = {
-  'host': 'mysql service 이름' }
-- github에 새로운 소스코드나 특정 브랜치가 커밋되거나 그런 변경이 일어나면
-  git action 에 지정해놔서 그럴떄마다 어떤 행동을 취할지를 dockerfile dockerhub 등등 명령어 하고 - > 배포 자동화?
-
-### 순서?
-
-- 명세서
-- git 분업화
-- PyTet, 단위테스트 코드 자동화 (test case 구현)
-- front는 일정한 형식으로 요청했을 때 내가 받을 수 있는 더미데이터 미리
+- 팀원 한 명이 취업하여 나가고, 다들 바쁜 시기라 다사다난한 프로젝트 기간이였지만, 혼자서 React, Flask, Docker, Kubernetes까지 할 수 있어서 매우 뿌듯했습니다.
+- 또한 웹페이지 구현 부분에서의 다양한 개선점과 서비스 배포 부분에서의
+  다른 기능을 이용하여 고객들에게 더 편리한 서비스를 제공하기 위해 노력
+  이 필요함을 알게 되었습니다.
