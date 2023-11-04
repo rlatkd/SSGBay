@@ -1,1 +1,2 @@
-*.yaml linguist-detectable=true
+k8s/** linguist-documentation=false
+k8s/** linguist-vendored=false
