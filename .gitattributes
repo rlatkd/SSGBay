@@ -1,3 +1,2 @@
 * linguist-vendored
 server/** linguist-vendored=false
-server/** linguist-documentation=false
