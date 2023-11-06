@@ -1076,10 +1076,12 @@ CMD ["sh", "-c", "cron && python app.py"]
 **(1) Backend**
 
 - API 명세서를 Swagger를 이용해 일목요연하게 표현
+- 내부 통신 시 URL은 REST의 규격에 맞게 설정
 - JWT을 브라우저 local storage에 저장하여 보안 상 취약
   - Access Token의 탈취 위험을 감안해 유효기간을 짧게 설정하고, Refresh Token을 이용해 개선 가능
 - test case 코드를 구현해 단위 테스트 코드 자동화 필요
 - 짧은 시간에 빠르게 주먹구구식으로 개발을 하여 클린코딩이 전혀 되지 않음
+- API 서버는 sidecar 등을 이용해 log를 수집하는 기능과 log 수집용 볼륨 등을 만들어야 함
 
 **(2) Database**
 
@@ -1096,6 +1098,8 @@ CMD ["sh", "-c", "cron && python app.py"]
 
 - ClusterIP는 서비스 이름으로 접근 가능하기 때문에 host IP 하드코딩 지양
 - 가변적으로 바뀌어야하는 것들(IP주소)을 환경변수로 처리 필요
+- configmap, secret 등을 이용해 설정을 분리하는 것이 필요
+- 디플로이먼트 배포전략 및 업데이트전략 개선 필요
 
 ### 7.3 후기
 
@@ -1110,3 +1114,5 @@ CMD ["sh", "-c", "cron && python app.py"]
 - server를 python 기반으로 구현했으면 Flask 말고도 Django 있는데 Flask 사용 이유?
 - 보안에 취약점 및 개선방법 더 생각할 거 없나?
 - 공공 API 사용 및 가비아 도메인 사용할 생각 안 했나?
+- monolithic 구조로 서비스를 구현했는데 규모가 커지면 MSA로 할 생각 해야됨
+- 굳이 규모가 안 커도 기능 분배 용이 그러나 규모가 작은 서비스를 MSA로 분할할 때 단점도 분명 존재함
