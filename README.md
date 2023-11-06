@@ -40,7 +40,11 @@
 
 - Insomnia
 
-**(5) 운영 환경**
+**(5) 가상 머신**
+
+- [Vagrant](https://github.com/rlatkd/k8s/tree/main/second_install_succeed)
+
+**(6) 운영 환경**
 
 - Docker
 - Kubernetes
