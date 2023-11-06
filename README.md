@@ -22,23 +22,24 @@
 
 **(1) 기술 스택**
 
-- python 3.11
-- Flask 3.0.0
-- MySQL 8.0
-- React 18.2.0
+- python ^3.11
+- Flask ^3.0.0
+- MySQL ^8.0
+- React ^18.2.0
 
 **(2) 개발 환경**
 
-- Window 10 pro v22H2
-- VSCode
+- Window 10 pro ^22H2 x64
+- VSCode ^1.84.0
 
 **(3) 실행 환경**
 
-- Node.js
+- Node.js ^20.9.0
 
 **(4) 테스트 환경**
 
 - Insomnia
+- Google Chrome ^119.0.6045.106 x64
 
 **(5) 가상 머신**
 
@@ -1101,3 +1102,11 @@ CMD ["sh", "-c", "cron && python app.py"]
 - 혼자서 React, Flask, MySQL, Docker, Kubernetes까지 할 수 있어서 상당히 배운 점이 많고 매우 뿌듯했습니다.
 - 또한 웹페이지 구현 부분에서의 다양한 개선점과 서비스 배포 부분에서의
   다른 기능을 이용하여 고객들에게 더 편리한 서비스를 제공하기 위해 노력이 필요함을 알게 되었습니다.
+
+### 추가해야할 거(미완)
+
+- PostgreSQL, MariaDB, SQLite 등 다양한 RDBMS가 있는데 MySQL을 왜 사용했는지에 대한 명확한 근거가 없음.
+- NoSQL을 썼으면 안 됐나?
+- server를 python 기반으로 구현했으면 Flask 말고도 Django 있는데 Flask 사용 이유?
+- 보안에 취약점 및 개선방법 더 생각할 거 없나?
+- 공공 API 사용 및 가비아 도메인 사용할 생각 안 했나?
