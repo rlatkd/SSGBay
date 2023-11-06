@@ -42,7 +42,7 @@
 
 **(5) 가상 머신**
 
-- [Vagrant](https://github.com/rlatkd/k8s/tree/main/second_install_succeed)
+- [Vagrant](https://github.com/rlatkd/Vagrant)
 
 **(6) 운영 환경**
 
