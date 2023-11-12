@@ -1092,6 +1092,7 @@ CMD ["sh", "-c", "cron && python app.py"]
 - ER Diagram을 구성할 때, 외래키를 다르게 하면 조금 더 간편한 혹은 부가적인 구성 가능
 - 기본 CRUD만을 구현하느라 참조목록이 너무 부족함
 - 데이터베이스를 CronJob을 이용해 백업 용을 만들지 않음
+- ORM을 사용했으면 더 편리할 수 있었음
 
 **(3) Frontend**
 
@@ -1115,7 +1116,7 @@ CMD ["sh", "-c", "cron && python app.py"]
 
 ### 추가해야할 거(미완)
 
-- PostgreSQL, MariaDB, SQLite 등 다양한 RDBMS가 있는데 MySQL을 왜 사용했는지에 대한 명확한 근거가 없음.
+- PostgreSQL, SQLite 등 다양한 RDBMS가 있는데 MySQL을 왜 사용했는지에 대한 명확한 근거가 없음.
 - NoSQL을 썼으면 안 됐나?
 - server를 python 기반으로 구현했으면 Flask 말고도 Django 있는데 Flask 사용 이유?
 - 보안에 취약점 및 개선방법 더 생각할 거 없나?
