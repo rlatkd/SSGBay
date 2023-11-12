@@ -970,7 +970,6 @@ kubectl apply -f react-deployment.yaml
 - 문제점: 다른 기능은 잘 작동하나 사진 업로드가 안 됨
 
 ```python
-# 경매글쓰기 페이지
 @app.route('/create', methods=['POST'])
 def create():
     try:
