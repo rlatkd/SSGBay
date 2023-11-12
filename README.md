@@ -848,10 +848,10 @@ spec:
   - 외부에 노출하면 오히려 보안상의 문제가 됨
   - 외부에 노출하려면 LoadBalancer 혹은 NodePort(On-premise 환경) 사용
 - subPath
-  - volumeMount는 기본적으로 그 폴더를 덮어씌우기 때문에 기존 파일이 있을 시 파일이 사라지게 ehla
+  - volumeMount는 기본적으로 그 폴더를 덮어씌우기 때문에 기존 파일이 있을 시 파일이 사라지게됨
   - 빈 폴더에 mount 설정 시 문제가 없지만 그렇지 않으면 파일이 날아가는 일이 발생
   - subPath를 지정하게 되면 기존 파일은 유지하면서 subPath 하위에 새로운 파일이 저장됨
-  - 단, mountPath와 subPath는 이름은 동일하게 작성해야 함
+  - 단, mountPath와 subPath는 이름은 동일하게 작성
 
 ```yaml
 apiVersion: apps/v1
