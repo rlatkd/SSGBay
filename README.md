@@ -1089,6 +1089,8 @@ CMD ["sh", "-c", "cron && python app.py"]
 
 **(2) Database**
 
+- ER Diagram을 구성할 때, 외래키를 다르게 하면 조금 더 간편한 혹은 부가적인 구성 가능
+- 기본 CRUD만을 구현하느라 참조목록이 너무 부족함
 - 데이터베이스를 CronJob을 이용해 백업 용을 만들지 않음
 
 **(3) Frontend**
