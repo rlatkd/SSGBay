@@ -664,7 +664,7 @@ mysql> show tables;
 docker login
 docker image push gnstkd/mymysql:1.0
 docker image push gnstkd/myflask:1.0
-docker iamge push gnstkd/myreact:1.0
+docker image push gnstkd/myreact:1.0
 ```
 
 **(2) 내 Docker Hub에 Image 등록된 것을 확인**
