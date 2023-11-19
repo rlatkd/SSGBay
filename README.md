@@ -23,7 +23,7 @@
 
 **(1) 언어**
 
-- Python ^3.11
+- Python ^3.11.5
 - JavaScript ^ES6
 - MySQL ^8.0
 
@@ -183,11 +183,11 @@
   - historyUpdate.py
     - crontab을 이용해 실시간 데이터를 history 테이블에 반영할 수 있도록 하는 코드
   - requirements.txt
-    - python 모듈 및 패키지 버전 명시
+    - Python 모듈 및 패키지 버전 명시
   - crontabFile
     - 지정한 시간(1분)이 지나면 자동으로 설정한 명령어 수행
   - Dockerfile-flask
-    - 명령어를 토대로 나열된 명령문을 수행하여 flask docker image를 생성
+    - 명령어를 토대로 나열된 명령문을 수행하여 Flask Docker Image를 생성
 - test
   - unitTest.py
     - pytest를 이용한 단위 테스트 코드
@@ -429,7 +429,7 @@ def getMyItem(user_id):
 - package(-lock).json
   - 패키지 목록과 프로젝트 기본 정보 및 빌드방식 담는 파일
 - Dockerfile-react
-  - 명령어를 토대로 나열된 명령문을 수행하여 react docker image를 생성
+  - 명령어를 토대로 나열된 명령문을 수행하여 React Docker Image를 생성
 
 ### 4.2 애플리케이션 특징
 
@@ -549,7 +549,7 @@ const handlerLogin = async () => {
 
 **(1) Dockerfile-flask**
 
-- 프로젝트에 사용한 모듈, 패키지 호환성이 좋은 python 3.11 버전을 사용
+- 프로젝트에 사용한 모듈, 패키지 호환성이 좋은 Python 3.11.5 버전을 사용
 - 크론탭 내용 추가
 
 ```docker
@@ -1086,7 +1086,7 @@ RUN crontab -l | { cat; echo "* * * * * /usr/local/bin/python /app/historyUpdate
 CMD ["sh", "-c", "cron && python app.py"]
 ```
 
-- JWT는 python 버전때문에 따로 추가함
+- JWT는 Python 버전때문에 따로 추가함
 - 애초에 import JWT를 하면 됐음
 
 ### 7.2 개선해야할 점
@@ -1132,7 +1132,7 @@ CMD ["sh", "-c", "cron && python app.py"]
 
 - PostgreSQL, SQLite 등 다양한 RDBMS가 있는데 MySQL을 왜 사용했는지에 대한 명확한 근거가 없음.
 - NoSQL을 썼으면 안 됐나?
-- server를 python 기반으로 구현했으면 Flask 말고도 Django 있는데 Flask 사용 이유?
+- server를 Python 기반으로 구현했으면 Flask 말고도 Django 있는데 Flask 사용 이유?
 - 보안에 취약점 및 개선방법 더 생각할 거 없나?
 - 공공 API 사용 및 가비아 도메인 사용할 생각 안 했나?
 - monolithic 구조로 서비스를 구현했는데 규모가 커지면 MSA로 할 생각 해야됨
