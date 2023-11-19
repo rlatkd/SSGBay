@@ -17,32 +17,6 @@ connectionString = {
 }
 
 
-def idCheck(user_id, pwd):
-    try:
-        with connect(**connectionString) as con:
-            cursor = con.cursor()
-            sql = 'SELECT * FROM user ' + 'WHERE id = %s and password = %s;'
-            cursor.execute(sql, [user_id, pwd])
-            result = cursor.fetchall()
-            return result
-        
-    except Exception as e:
-        print(e)
-
-
-def getMyItem(user_id):
-    try:
-        with connect(**connectionString) as con:
-            cursor = con.cursor()
-            sql = 'SELECT * FROM item WHERE user_id = %s;'
-            cursor.execute(sql, [user_id])
-            result = cursor.fetchall()
-            return result
-        
-    except Exception as e:
-        print(e)        
-
-
 def getItems(sort, keyword):
     try:
         query = 'SELECT * FROM item'
@@ -71,20 +45,19 @@ def getItems(sort, keyword):
         print(e)
 
 
-def getItemDetails(id):
+def idCheck(user_id, pwd):
     try:
         with connect(**connectionString) as con:
             cursor = con.cursor()
-            sql = 'SELECT * FROM item WHERE id = %s'
-            cursor.execute(sql, (id, ))
-            itemDetails = cursor.fetchone()
-            cursor.close()
-        return itemDetails, 200, { 'Content-Type': 'application/json'}
-
+            sql = 'SELECT * FROM user ' + 'WHERE id = %s and password = %s;'
+            cursor.execute(sql, [user_id, pwd])
+            result = cursor.fetchall()
+            return result
+        
     except Exception as e:
         print(e)
-        
-        
+
+
 def addUserInfo(userId, userPwd, userNickname, userPhone):
     try:
         with connect(**connectionString) as con:
@@ -99,19 +72,6 @@ def addUserInfo(userId, userPwd, userNickname, userPhone):
         print(e)
 
 
-def getMyItem(user_id):
-    try:
-        with connect(**connectionString) as con:
-            cursor = con.cursor()
-            sql = 'SELECT * FROM item WHERE user_id = %s;'
-            cursor.execute(sql, [user_id])
-            result = cursor.fetchall()
-            return result
-        
-    except Exception as e:
-        print(e) 
-                
-
 def getBuyItem(user_id):
     try:
         with connect(**connectionString) as con:
@@ -123,19 +83,21 @@ def getBuyItem(user_id):
             return result
         
     except Exception as e:
-        print(e)        
+        print(e)  
 
-        
-def addItemInfo(itemName, itemContent, itemPrice, itemImage, endTime, userId):
-    
-    with connect(**connectionString) as con:
+
+def getMyItem(user_id):
+    try:
+        with connect(**connectionString) as con:
             cursor = con.cursor()
-            now = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-            sql = 'INSERT INTO item (name, content, price, image, endTime, startTime, user_id) VALUES (%s, %s, %s, %s, %s, %s, %s)'
-            cursor.execute(sql, (itemName, itemContent, itemPrice, itemImage, endTime, now, userId))
-            con.commit()
-    return '경매물품 등록 성공', 200
- 
+            sql = 'SELECT * FROM item WHERE user_id = %s;'
+            cursor.execute(sql, [user_id])
+            result = cursor.fetchall()
+            return result
+        
+    except Exception as e:
+        print(e) 
+
 
 def getItemDetails(id):
     try:
@@ -149,7 +111,8 @@ def getItemDetails(id):
 
     except Exception as e:
         print(e)
-        
+
+
 def updatePrice(id, new_price):
     try:
         with connect(**connectionString) as con:
@@ -163,6 +126,21 @@ def updatePrice(id, new_price):
     except Exception as e:
         print(e)
         return {'message': '가격 업데이트에 실패했습니다.'}, 500
+
+
+def deleteItem(userId):
+    try:
+        with connect(**connectionString) as con:
+            cursor = con.cursor()
+            sql = 'DELETE * FROM item WHERE user_id = %s'
+            cursor.execute(sql, (userId))
+            con.commit()
+            cursor.close()
+            return {'message': '삭제되었습니다.'}, 200
+
+    except Exception as e:
+        print(e)
+        return {'message': '삭제에 실패했습니다.'}, 500                
 
 
 def insertPrehistory(itemId, userId, endTime):
@@ -180,18 +158,14 @@ def insertPrehistory(itemId, userId, endTime):
     except Exception as e:
         print(e)
         return {'message': '거래 실패'}, 500
+
+
+def addItemInfo(itemName, itemContent, itemPrice, itemImage, endTime, userId):
     
-
-def deleteItem(userId):
-    try:
-        with connect(**connectionString) as con:
+    with connect(**connectionString) as con:
             cursor = con.cursor()
-            sql = 'DELETE * FROM item WHERE user_id = %s'
-            cursor.execute(sql, (userId))
+            now = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+            sql = 'INSERT INTO item (name, content, price, image, endTime, startTime, user_id) VALUES (%s, %s, %s, %s, %s, %s, %s)'
+            cursor.execute(sql, (itemName, itemContent, itemPrice, itemImage, endTime, now, userId))
             con.commit()
-            cursor.close()
-            return {'message': '삭제되었습니다.'}, 200
-
-    except Exception as e:
-        print(e)
-        return {'message': '삭제에 실패했습니다.'}, 500
+    return '경매물품 등록 성공', 200
