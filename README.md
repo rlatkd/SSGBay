@@ -32,14 +32,21 @@
 - Flask ^3.0.0
 - React ^18.2.0
 
+**(3) 도구**
+
+- VSCode ^1.84.0
+- MySQL Workbench ^8.0 CE
+
 **(3) 환경**
 
-- Window 10 pro ^22H2 x64
+- Windows 10 pro ^22H2 x64
+- Linux Ubuntu ^22.04 x64
 
 **(4) 버전 관리**
 
-- Node.js ^20.9.0 & npm ^9.8.1
-- VSCode ^1.84.0 & pip ^23.3.1
+- pip ^23.3.1
+- Node.js ^20.9.0
+- npm ^9.8.1
 
 **(5) 테스트**
 
