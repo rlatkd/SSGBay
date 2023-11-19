@@ -17,6 +17,7 @@ connectionString = {
 }
 
 
+# 전체 상품 조회
 def getItems(sort, keyword):
     try:
         query = 'SELECT * FROM item'
@@ -45,6 +46,7 @@ def getItems(sort, keyword):
         print(e)
 
 
+# 로그인 id 유효
 def idCheck(user_id, pwd):
     try:
         with connect(**connectionString) as con:
@@ -58,6 +60,7 @@ def idCheck(user_id, pwd):
         print(e)
 
 
+# 회원가입
 def addUserInfo(userId, userPwd, userNickname, userPhone):
     try:
         with connect(**connectionString) as con:
@@ -72,6 +75,7 @@ def addUserInfo(userId, userPwd, userNickname, userPhone):
         print(e)
 
 
+# 상품구매
 def getBuyItem(user_id):
     try:
         with connect(**connectionString) as con:
@@ -86,6 +90,7 @@ def getBuyItem(user_id):
         print(e)  
 
 
+# 내 구매내역
 def getMyItem(user_id):
     try:
         with connect(**connectionString) as con:
@@ -99,6 +104,7 @@ def getMyItem(user_id):
         print(e) 
 
 
+# 상품상세조회
 def getItemDetails(id):
     try:
         with connect(**connectionString) as con:
@@ -113,6 +119,7 @@ def getItemDetails(id):
         print(e)
 
 
+# 입찰시 상품가격변경
 def updatePrice(id, new_price):
     try:
         with connect(**connectionString) as con:
@@ -128,6 +135,7 @@ def updatePrice(id, new_price):
         return {'message': '가격 업데이트에 실패했습니다.'}, 500
 
 
+# 상품삭제
 def deleteItem(userId):
     try:
         with connect(**connectionString) as con:
@@ -143,6 +151,7 @@ def deleteItem(userId):
         return {'message': '삭제에 실패했습니다.'}, 500                
 
 
+# 입찰정보
 def insertPrehistory(itemId, userId, endTime):
     try:
         with connect(**connectionString) as con:
@@ -160,6 +169,7 @@ def insertPrehistory(itemId, userId, endTime):
         return {'message': '거래 실패'}, 500
 
 
+# 경매글쓰기
 def addItemInfo(itemName, itemContent, itemPrice, itemImage, endTime, userId):
     
     with connect(**connectionString) as con:

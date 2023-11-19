@@ -121,8 +121,9 @@ function DetailPage() {
         </div>
         <div className={styles.bottomRightSection}>
           <div className={styles.userInfo}>경매자</div>
+          <div>ID: {data.user_id}</div>
           <div>
-            <div>ID: {data.user_id}</div>
+          <button className={styles.bidButton2} onClick={handlerDelete}>삭제</button>
           </div>
         </div>
       </div>

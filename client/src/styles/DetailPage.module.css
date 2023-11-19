@@ -60,6 +60,22 @@
   }
 }
 
+.bidButton2 {
+  height: 50px;
+  width: 60px;
+  background-color: #5262f2;
+  border-bottom-right-radius: 3px;
+  border-top-right-radius: 3px;
+  color: white;
+  font-size: 17px;
+  border: 2px solid black;
+  border-left: none;
+  cursor: pointer;
+  &:active{
+    background-color: #b33e59;
+  }
+}
+
 .itemImg {
   width: 400px;
   height: 400px;
