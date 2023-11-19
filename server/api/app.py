@@ -8,11 +8,11 @@ import os
 
 
 app = Flask(__name__, static_folder='./resources/')
-app.config["JWT_SECRET_KEY"] = "super-secret"
+app.config['JWT_SECRET_KEY'] = 'super-secret'
 UPLOAD_FOLDER = path.join('.', 'resources/')
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 jwt = JWTManager(app)
-cors = CORS(app, resources={r"/*": {"origins": "*"}})
+cors = CORS(app, resources={r'/*': {'origins': '*'}})
 
 
 # 메인
@@ -24,7 +24,7 @@ def main():
 
 
 # 로그인
-@app.route('/login', methods = ["GET", "POST"])
+@app.route('/login', methods = ['GET', 'POST'])
 def login():
     if request.method == 'POST':
         userId = request.json.get('id')
@@ -49,15 +49,15 @@ def signup():
         userPhone = request.json.get('userPhone')
         userInfo, status_code, headers = database.addUserInfo(userId, userPwd, userNickname, userPhone)  
         access_token = create_access_token(identity=userId)
-        return jsonify({"message": "계정 추가 및 로그인 성공", "token": access_token, 'userId':userId}), 200, {'Content-Type': 'application/json'}
+        return jsonify({'message': '계정 추가 및 로그인 성공', 'token': access_token, 'userId':userId}), 200, {'Content-Type': 'application/json'}
 
     except Exception as e:
         print(e)
-        return jsonify({"message": "요청중 에러가 발생"}), 500, {'Content-Type': 'application/json'}
+        return jsonify({'message': '요청중 에러가 발생'}), 500, {'Content-Type': 'application/json'}
 
 
 # 구매내역
-@app.route('/mypage/buyitem', methods=["GET"])  
+@app.route('/mypage/buyitem', methods=['GET'])  
 def getBuyItem():
     user_id = request.args.get('id')
     if user_id is not None:
@@ -69,7 +69,7 @@ def getBuyItem():
     
     
 # 내 게시글   
-@app.route('/mypage/myitem', methods=["GET"])  
+@app.route('/mypage/myitem', methods=['GET'])  
 def getMyItem():
     user_id = request.args.get('id')
     if user_id is not None:
@@ -81,7 +81,7 @@ def getMyItem():
     
 
 # 상품상세
-@app.route('/detail/<id>', methods=['GET','PUT'])
+@app.route('/detail/<id>', methods=['GET','PUT','DELETE'])
 def detail(id):
     if request.method == 'GET':
         print(database.getItemDetails(id) , id)
@@ -91,7 +91,11 @@ def detail(id):
         price = request.json.get('price')
         return database.updatePrice(id, price, new_price=price)
     
-
+    if request.method == 'DELETE':
+        print(database.deleteItem(id) , id)
+        return database.deleteItem(id)
+        
+    
 # 입찰정보
 @app.route('/history', methods=['POST'])
 def history():
@@ -120,8 +124,8 @@ def create():
 
     except Exception as e:
         print(e)
-        return jsonify({"message": "요청중 에러가 발생"}), 500, {'Content-Type': 'application/json'}
+        return jsonify({'message': '요청중 에러가 발생'}), 500, {'Content-Type': 'application/json'}
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     app.run(host = '0.0.0.0')
