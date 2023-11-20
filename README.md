@@ -874,7 +874,7 @@ kind: Deployment
 metadata:
   name: my-mysql-deployment
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: my-mysql
@@ -1137,3 +1137,6 @@ CMD ["sh", "-c", "cron && python app.py"]
 - 공공 API 사용 및 가비아 도메인 사용할 생각 안 했나?
 - monolithic 구조로 서비스를 구현했는데 규모가 커지면 MSA로 할 생각 해야됨
 - 굳이 규모가 안 커도 기능 분배 용이 그러나 규모가 작은 서비스를 MSA로 분할할 때 단점도 분명 존재함
+- 로컬에서 Docker, Kubernetes 말고 AWS나 Azure 등 퍼블릭 클라우드에 배포하려면 어떤 인프라를 구성해야 하나 미리 고민
+- 배포 자동화하려면 GitHub Actions? Jenkins? 생각
+- IaC를 위해서 Terraform 공부
