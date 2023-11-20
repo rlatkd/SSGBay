@@ -34,7 +34,7 @@
 
 **(3) 도구**
 
-- VSCode ^1.84.0
+- Visual Studio Code ^1.84.0
 - MySQL Workbench ^8.0 CE
 
 **(3) 환경**
@@ -542,9 +542,9 @@ const handlerLogin = async () => {
 ### 5.1 Dockerfile
 
 ```
-📁 Dockerfile-flask
-📁 Dockerfile-mysql
-📁 Dockerfile-react
+📄 Dockerfile-flask
+📄 Dockerfile-mysql
+📄 Dockerfile-react
 ```
 
 **(1) Dockerfile-flask**
@@ -812,7 +812,7 @@ spec:
 
 **(1) flask-deployment.yaml**
 
-- gnstk/myflask:1.0 이미지 사용
+- gnstkd/myflask:1.0 이미지 사용
 - 5000번 포트 사용
 - LoadBalancer 타입 서비스 및 IP 설정
 
@@ -855,7 +855,7 @@ spec:
 
 **(2) mysql-deployment.yaml**
 
-- gnstk/mymysql:1.0 이미지 사용
+- gnstkd/mymysql:1.0 이미지 사용
 - 3306번 포트 사용
 - ClusterIP 타입 서비스 설정
 - ClusterIP를 사용한 이유:
@@ -914,7 +914,7 @@ spec:
 
 **(3) react-deployment.yaml**
 
-- gnstk/myreact:1.0 이미지 사용
+- gnstkd/myreact:1.0 이미지 사용
 - 80번 포트 사용
 - LoadBalancer 타입 서비스 및 IP 설정
 
