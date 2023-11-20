@@ -40,7 +40,7 @@
 **(3) 환경**
 
 - Windows 10 pro ^22H2 x64
-- Linux Ubuntu ^22.04 x64
+- Ubuntu ^22.04.3 LTS
 
 **(4) 버전 관리**
 
