@@ -1159,3 +1159,5 @@ CMD     ["sh", "-c", "cron && python app.py"]
 - 로컬에서 Docker, Kubernetes 말고 AWS나 Azure 등 퍼블릭 클라우드에 배포하려면 어떤 인프라를 구성해야 하나 미리 고민
 - 배포 자동화하려면 GitHub Actions? Jenkins? 생각
 - IaC를 위해서 Terraform 공부
+
+1
