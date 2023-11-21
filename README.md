@@ -215,6 +215,8 @@
 - 토큰을 이용해 로그인 기능 구현
 
 ```python
+...
+...
 from flask_jwt_extended import JWTManager
 from flask_jwt_extended import create_access_token
 
@@ -246,13 +248,13 @@ def signup():
         userPhone = request.json.get('userPhone')
         userInfo, status_code, headers = database.addUserInfo(userId, userPwd, userNickname, userPhone)
         access_token = create_access_token(identity=userId)
-
         return jsonify({"message": "계정 추가 및 로그인 성공", "token": access_token, 'userId':userId}), 200, {'Content-Type': 'application/json'}
 
     except Exception as e:
         print(e)
-
         return jsonify({"message": "요청중 에러가 발생"}), 500, {'Content-Type': 'application/json'}
+...
+...
 ```
 
 **(2) 경매상품등록**
@@ -260,6 +262,8 @@ def signup():
 - 정적 파일이 위치할 디렉터리를 설정후 이미지 파일이 URL 형식으로 해당 경로에 저장되게 구현
 
 ```python
+...
+...
 from os import path
 app = Flask(__name__, static_folder='./resources/')
 UPLOAD_FOLDER = path.join('.', 'resources/')
@@ -278,13 +282,13 @@ def create():
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], file.filename))
         image_url = 'http://10.0.0.4:5000/resources/' + file.filename
         print(image_url)
-
         return database.addItemInfo( itemName, itemContent, itemPrice, image_url, endTime, userId)
 
     except Exception as e:
         print(e)
-
         return jsonify({"message": "요청중 에러가 발생"}), 500, {'Content-Type': 'application/json'}
+...
+...
 ```
 
 **(3) 경매낙찰시스템**
@@ -293,6 +297,8 @@ def create():
 - 크론탭은 지정한 시간마다 갱신됨
 
 ```python
+...
+...
 def moveExpiredItemsToHistory():
     try:
         with pymysql.connect(**connectionString) as con:
@@ -318,7 +324,6 @@ def moveExpiredItemsToHistory():
                         insert_sql = "INSERT INTO history (item_id, user_id) VALUES (%s, %s)"
                         cursor.execute(insert_sql, (item['item_id'], item['user_id']))
                         con.commit()
-
             print("Expired items moved to history table successfully.")
 
     except Exception as e:
@@ -338,6 +343,8 @@ moveExpiredItemsToHistory()
 - 데이터 처리 SQL 문자열을 `%s` 로 처리하여 SQL Injection 방지
 
 ```python
+...
+...
 def getMyItem(user_id):
     try:
         with connect(**connectionString) as con:
@@ -345,11 +352,12 @@ def getMyItem(user_id):
             sql = "SELECT * FROM item where user_id = %s;"
             cursor.execute(sql, [user_id])
             result = cursor.fetchall()
-
             return result
 
     except Exception as e:
         print(e)
+...
+...
 ```
 
 ## 3. Database
@@ -498,6 +506,8 @@ def getMyItem(user_id):
 - 개발자가 읽기 좋은 코드를 작성할 수 있게 도와줌
 
 ```jsx
+...
+...
 const handlerLogin = async () => {
   try {
     if (id.trim() === "") {
@@ -535,6 +545,8 @@ const handlerLogin = async () => {
     console.error("로그인 중 오류 발생:", error);
   }
 };
+...
+...
 ```
 
 ## 5. Docker
@@ -985,6 +997,8 @@ kubectl apply -f react-deployment.yaml
 - 문제점: 다른 기능은 잘 작동하나 사진 업로드가 안 됨
 
 ```python
+...
+...
 @app.route('/create', methods=['POST'])
 def create():
     try:
@@ -1004,14 +1018,15 @@ def create():
     except Exception as e:
         print(e)
         return jsonify({"message": "요청중 에러가 발생"}), 500, {'Content-Type': 'application/json'}
-
-if __name__ == "__main__":
-    app.run(host = '0.0.0.0', debug = True)
+...
+...
 ```
 
 - 해결방안: 정적 파일이 위치할 디렉터리를 설정후 이미지 파일이 URL 형식으로 해당 경로에 저장되게 구현
 
 ```python
+...
+...
 from os import path
 app = Flask(__name__, static_folder='./resources/')
 UPLOAD_FOLDER = path.join('.', 'resources/')
@@ -1030,13 +1045,13 @@ def create():
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], file.filename))
         image_url = 'http://10.0.0.4:5000/resources/' + file.filename
         print(image_url)
-
         return database.addItemInfo( itemName, itemContent, itemPrice, image_url, endTime, userId)
 
     except Exception as e:
         print(e)
-
         return jsonify({"message": "요청중 에러가 발생"}), 500, {'Content-Type': 'application/json'}
+...
+...
 ```
 
 **(2) JWT**
@@ -1074,16 +1089,18 @@ flask_jwt_extended
 - 해결방안: Dockerfile에 `RUN pip install jwt` 를 따로 명시
 
 ```docker
-FROM python:3.11
-RUN apt-get update && apt-get install -y cron
+FROM    python:3.11
+RUN     apt-get update && apt-get install -y cron
 WORKDIR /app
-COPY . .
-RUN pip install jwt
-RUN pip install --no-cache-dir -r requirements.txt
-#COPY crontabFile /etc/cron.d/cronfile
-#RUN chmod 0644 /etc/cron.d/cronfile
-RUN crontab -l | { cat; echo "* * * * * /usr/local/bin/python /app/historyUpdate.py >> /var/log/cron.log 2>&1"; } | crontab -
-CMD ["sh", "-c", "cron && python app.py"]
+COPY    . .
+
+# 이 부분 추가#
+RUN     pip install jwt
+###############
+
+RUN     pip install --no-cache-dir -r requirements.txt
+RUN     crontab -l | { cat; echo "* * * * * /usr/local/bin/python /app/historyUpdate.py >> /var/log/cron.log 2>&1"; } | crontab -
+CMD     ["sh", "-c", "cron && python app.py"]
 ```
 
 - JWT는 Python 버전때문에 따로 추가함
