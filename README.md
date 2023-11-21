@@ -1158,6 +1158,4 @@ CMD     ["sh", "-c", "cron && python app.py"]
 - 굳이 규모가 안 커도 기능 분배 용이 그러나 규모가 작은 서비스를 MSA로 분할할 때 단점도 분명 존재함
 - 로컬에서 Docker, Kubernetes 말고 AWS나 Azure 등 퍼블릭 클라우드에 배포하려면 어떤 인프라를 구성해야 하나 미리 고민
 - 배포 자동화하려면 GitHub Actions? Jenkins? 생각
-- IaC를 위해서 Terraform 공부
-
-1
+- IaC를 위해서 Terraform 공부 필요
