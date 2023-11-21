@@ -2,8 +2,6 @@
 
 ## 0. 목차
 
-1
-
 - [개요](#1-개요)
 - [Backend](#2-Backend)
 - [Database](#3-Database)
