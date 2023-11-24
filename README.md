@@ -159,6 +159,8 @@
 
 ## 2. Backend
 
+<img src='https://github.com/rlatkd/SSGBay-k8s/blob/main/assets/readmeImage/ssgbayFlask.png'/>
+
 ### 2.1 디렉터리 구조
 
 ```
@@ -392,6 +394,8 @@ def getMyItem(user_id):
 - 이 때 기획자가 DB에 대해 어느정도 알고 있다면 MySQL의 어떤 컬럼을 사용해서 해당 지표를 구현할 수 있을지 확인할 수 있음
 
 ## 4. Frontend
+
+<img src='https://github.com/rlatkd/SSGBay-k8s/blob/main/assets/readmeImage/ssgbayReact.png'/>
 
 ### 4.1 디렉터리 구조
 
