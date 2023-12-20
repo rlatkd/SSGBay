@@ -25,35 +25,35 @@
 
 **(1) 언어**
 
-- Python ^3.11.5
-- JavaScript ^ES6
-- MySQL ^8.0
+- Python v3.11.5
+- JavaScript vES6
+- MySQL v8.0
 
 **(2) 프레임워크**
 
-- Flask ^3.0.0
-- React ^18.2.0
+- Flask v3.0.0
+- React v18.2.0
 
 **(3) 도구**
 
-- Visual Studio Code ^1.84.0
-- MySQL Workbench ^8.0 CE
+- Visual Studio Code v1.84.0
+- MySQL Workbench v8.0 CE
 
 **(3) 환경**
 
-- Windows 10 pro ^22H2 x64
-- Ubuntu ^22.04.3 LTS
+- Windows 10 pro v22H2 x64
+- Ubuntu v22.04.3 LTS
 
 **(4) 버전 관리**
 
-- pip ^23.3.1
-- Node.js ^20.9.0
-- npm ^9.8.1
+- pip v23.3.1
+- Node.js v20.9.0
+- npm v9.8.1
 
 **(5) 테스트**
 
 - Insomnia
-- Google Chrome ^119.0.6045.106 x64
+- Google Chrome v119.0.6045.106 x64
 
 **(6) 가상 머신**
 
