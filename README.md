@@ -155,11 +155,11 @@
 
 ### 1.6 ER Diagram
 
-<img src='https://github.com/rlatkd/SSGBay-k8s/blob/main/assets/readmeImage/ERDiagram.png'/>
+<img src='https://github.com/rlatkd/SSGBay-v3/blob/main/assets/readmeImage/ERDiagram.png'/>
 
 ## 2. Backend
 
-<img src='https://github.com/rlatkd/SSGBay-k8s/blob/main/assets/readmeImage/ssgbayFlask.png'/>
+<img src='https://github.com/rlatkd/SSGBay-v3/blob/main/assets/readmeImage/ssgbayFlask.png'/>
 
 ### 2.1 디렉터리 구조
 
@@ -206,15 +206,15 @@
     → 세션(Session), 토큰(Token)이 사용됨
 - 세션 동작과정
 
-<img src='https://github.com/rlatkd/SSGBay-k8s/blob/main/assets/readmeImage/sessionImage.png'/>
+<img src='https://github.com/rlatkd/SSGBay-v3/blob/main/assets/readmeImage/sessionImage.png'/>
 
 - 토큰 동작과정
 
-<img src='https://github.com/rlatkd/SSGBay-k8s/blob/main/assets/readmeImage/tokenImage.png'/>
+<img src='https://github.com/rlatkd/SSGBay-v3/blob/main/assets/readmeImage/tokenImage.png'/>
 
 - JWT 구조
 
-<img src='https://github.com/rlatkd/SSGBay-k8s/blob/main/assets/readmeImage/JWT.png'/>
+<img src='https://github.com/rlatkd/SSGBay-v3/blob/main/assets/readmeImage/JWT.png'/>
 
 - 토큰을 이용해 로그인 기능 구현
 
@@ -395,7 +395,7 @@ def getMyItem(user_id):
 
 ## 4. Frontend
 
-<img src='https://github.com/rlatkd/SSGBay-k8s/blob/main/assets/readmeImage/ssgbayReact.png'/>
+<img src='https://github.com/rlatkd/SSGBay-v3/blob/main/assets/readmeImage/ssgbayReact.png'/>
 
 ### 4.1 디렉터리 구조
 
@@ -451,59 +451,59 @@ def getMyItem(user_id):
 
 - 카드 UI를 이용해 전체 상품을 편하게 확인 가능
 
-<img src='https://github.com/rlatkd/SSGBay-k8s/blob/main/assets/readmeImage/mainPage.png'/>
+<img src='https://github.com/rlatkd/SSGBay-v3/blob/main/assets/readmeImage/mainPage.png'/>
 
 **(2) 필터링**
 
 - 필터를 통해 최신순, 높은 가격순, 낮은 가격순으로 볼 수 있음
 
-<img src='https://github.com/rlatkd/SSGBay-k8s/blob/main/assets/readmeImage/mainPageFilter.png'/>
+<img src='https://github.com/rlatkd/SSGBay-v3/blob/main/assets/readmeImage/mainPageFilter.png'/>
 
 **(3) 검색**
 
 - 검색을 통해 해당 문자가 포함된 상품만 볼 수 있음
 
-<img src='https://github.com/rlatkd/SSGBay-k8s/blob/main/assets/readmeImage/mainPageSearch.png'/>
+<img src='https://github.com/rlatkd/SSGBay-v3/blob/main/assets/readmeImage/mainPageSearch.png'/>
 
-<img src='https://github.com/rlatkd/SSGBay-k8s/blob/main/assets/readmeImage/mainPageSearch2.png'/>
+<img src='https://github.com/rlatkd/SSGBay-v3/blob/main/assets/readmeImage/mainPageSearch2.png'/>
 
 **(4) 탭**
 
 - 탭을 이용하여 보다 편리한 UI를 제공
 
-<img src='https://github.com/rlatkd/SSGBay-k8s/blob/main/assets/readmeImage/Tab.png'/>
+<img src='https://github.com/rlatkd/SSGBay-v3/blob/main/assets/readmeImage/Tab.png'/>
 
-<img src='https://github.com/rlatkd/SSGBay-k8s/blob/main/assets/readmeImage/Tab2.png'/>
+<img src='https://github.com/rlatkd/SSGBay-v3/blob/main/assets/readmeImage/Tab2.png'/>
 
 **(5) 유효성 검사**
 
 - 비로그인시 로그인상태에서만 확인할 수 있는 내용(ex. 마이페이지) 등에 접근 불가능
 
-<img src='https://github.com/rlatkd/SSGBay-k8s/blob/main/assets/readmeImage/validity1.png'/>
+<img src='https://github.com/rlatkd/SSGBay-v3/blob/main/assets/readmeImage/validity1.png'/>
 
 - 입력하지 않은 내용이 있으면 경고창이 나옴
 
-<img src='https://github.com/rlatkd/SSGBay-k8s/blob/main/assets/readmeImage/validity2.png'/>
+<img src='https://github.com/rlatkd/SSGBay-v3/blob/main/assets/readmeImage/validity2.png'/>
 
 - 비밀번호가 일치하지않으면 경고창이 나옴
 
-<img src='https://github.com/rlatkd/SSGBay-k8s/blob/main/assets/readmeImage/validity3.png'/>
+<img src='https://github.com/rlatkd/SSGBay-v3/blob/main/assets/readmeImage/validity3.png'/>
 
 - 본인 상품은 입찰 불가능
 
-<img src='https://github.com/rlatkd/SSGBay-k8s/blob/main/assets/readmeImage/validity4.png'/>
+<img src='https://github.com/rlatkd/SSGBay-v3/blob/main/assets/readmeImage/validity4.png'/>
 
 **(6) 실시간 업데이트**
 
 - 현재 낙찰 예정 금액보다 낮은 금액은 입력 불가
 
-<img src='https://github.com/rlatkd/SSGBay-k8s/blob/main/assets/readmeImage/update1.png'/>
+<img src='https://github.com/rlatkd/SSGBay-v3/blob/main/assets/readmeImage/update1.png'/>
 
-<img src='https://github.com/rlatkd/SSGBay-k8s/blob/main/assets/readmeImage/update2.png'/>
+<img src='https://github.com/rlatkd/SSGBay-v3/blob/main/assets/readmeImage/update2.png'/>
 
 - 입찰을 하면 실시간으로 가격이 반영되어 변동됨
 
-<img src='https://github.com/rlatkd/SSGBay-k8s/blob/main/assets/readmeImage/update3.png'/>
+<img src='https://github.com/rlatkd/SSGBay-v3/blob/main/assets/readmeImage/update3.png'/>
 
 **(7) acync & await**
 
@@ -687,7 +687,7 @@ mysql> show tables;
 +-------------------+
 ```
 
-<img src='https://github.com/rlatkd/SSGBay-k8s/blob/main/assets/readmeImage/mainPage.png'/>
+<img src='https://github.com/rlatkd/SSGBay-v3/blob/main/assets/readmeImage/mainPage.png'/>
 
 ### 5.4 Docker Hub
 
@@ -988,11 +988,11 @@ kubectl apply -f react-deployment.yaml
 
 **(2) 서비스 및 파드 생성 확인**
 
-<img src='https://github.com/rlatkd/SSGBay-k8s/blob/main/assets/readmeImage/kubectlgetall.png'/>
+<img src='https://github.com/rlatkd/SSGBay-v3/blob/main/assets/readmeImage/kubectlgetall.png'/>
 
 **(3) 10.0.0.5 로 접근 후 정상 작동 확인**
 
-<img src='https://github.com/rlatkd/SSGBay-k8s/blob/main/assets/readmeImage/normal.png'/>
+<img src='https://github.com/rlatkd/SSGBay-v3/blob/main/assets/readmeImage/normal.png'/>
 
 ## 7. 후기
 
