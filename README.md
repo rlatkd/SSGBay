@@ -1,4 +1,8 @@
-# FullStack web application project with Docker & Kubernetes
+# 신세계아이앤씨 클라우드 엔지니어 양성과정 2기
+
+## 2차 미니프로젝트
+
+### v3 Docker와 Kubernetes로 On-Premise 배포
 
 ## 0. 목차
 
