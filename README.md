@@ -2,7 +2,7 @@
 
 ## 2차 미니프로젝트
 
-### v3 Docker와 Kubernetes로 On-Premise 배포
+### v1 Docker와 Kubernetes로 On-Premise 배포
 
 ## 0. 목차
 
